@@ -26,15 +26,17 @@ router.route("/:id").get((req, res) => {
 
 // @route POST /
 // @ description add/save book
-router.route("/add").post((req, res) => {
+router.route("/").post((req, res) => {
     const title = req.body.title;
     const author = req.body.author;
     const description = req.body.description;
+    const pages = req.body.pages;
     // create a new Book object
     const newBook = new Book({
       title,
       author,
       description,
+      pages
     });
       // save the new book
       newBook
@@ -49,13 +51,13 @@ router.route("/add").post((req, res) => {
 
   // @route PUT or POST /:id
   // @description Update book by id
-  router.route("/update/:id").post((req, res) => {
+  router.route("/:id").post((req, res) => {
     Book.findByIdAndUpdate(req.params.id, req.body)
       .then(() => res.json("Book Updated."))
       .catch((err) => res.status(404).json("Server Error: " + err));
   });
 
-  router.route("/update/:id").put((req, res) => {
+  router.route("/:id").put((req, res) => {
     Book.findByIdAndUpdate(req.params.id, req.body)
       .then(() => res.json("Book Updated."))
       .catch((err) => res.status(404).json("Server Error: " + err));
@@ -65,7 +67,7 @@ router.route("/add").post((req, res) => {
   
   // @route DELETE /:id
   // @description Delete book by id
-  router.route("/delete/:id").delete((req, res) => {
+  router.route("/:id").delete((req, res) => {
     Book.findByIdAndDelete(req.params.id)
       .then(() => res.json("Book deleted."))
       .catch((err) => res.status(404).json("Server Error: " + err));
