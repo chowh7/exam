@@ -4,7 +4,7 @@ import CreateBook from "./components/CreateBook";
 import { Routes, Route } from "react-router-dom";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:3001/books";
+axios.defaults.baseURL = "https://examserver-qr72.onrender.com/books";
 
 function App() {
   return (
